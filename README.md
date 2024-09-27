@@ -26,7 +26,7 @@ Next, we need to specify the username which we want to sign up with. To do this,
 6. If the username had been used before, you will see a response indicating that. Choose a new username and send the request again.
 7. If the request is successfully sent, you will see a response that contains a `status_code` of value `200`. In this response, you will get two important fields -  `token` and `environment_variables`, whose values you will need later on in the activity.
 
-You can also refer to htps://www.postman.com/cloudy-astronaut-813156/csc207-grade-apis-demo/overview for the documentation of all API requests related to the Grade API.
+You can also refer to https://www.postman.com/cloudy-astronaut-813156/csc207-grade-apis-demo/overview for the documentation of all API requests related to the Grade API.
 Specifically, to learn more about the SignUp API request, refer to - https://www.postman.com/cloudy-astronaut-813156/csc207-grade-apis-demo/request/9huifpg/1-1-sign-up-when-a-username-is-available
 
 ***
