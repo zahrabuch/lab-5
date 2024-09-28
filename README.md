@@ -136,7 +136,7 @@ for `Get Average Grade` isn't implemented yet and this displays an error message
 `GetAverageGradeUseCase` in the usecase layer. You can do this by setting a breakpoint and running the program in debug mode.
 4. You will need to finish implementing the logic of calculating the average grade (Task 3a in the code) in the `GetAverageGradeUseCase` class.
 The logic is partly implemented, but what is written depends on the `getMyTeam` method (Task 3b in the code), which needs to be implemented.
-Follow the hints provided in this method to complete its implementation.
+Follow the hints provided in this method to complete its implementation. Note the API response will be in `json` format which you learned how to parse last lab.
 
 You can run the provided tests to check if your "Task 3a" `GetAverageGradeUseCase` logic is implemented correctly, _before_ you finish implementing the "Task 3b" `MongoGradeDataBase.getMyTeam` method in Task 3.
 These tests make use of the technique of mocking (or stubbing), where instead of calling the actual API we use fake data instead.
@@ -158,8 +158,6 @@ additional use case that can be implemented using this Grade API.
 Implement this use case end-to-end, from the UI layer to the UseCase layer, and see if you can get it working.
 This will be good practice for when your team starts developing your own course project where you will also be using an API endpoint. 
 
-## Tips
-1. Use this API `info` if you want to access all the information you can access (your team and all your teammates' grades).
-2. All responses are in `json` format which you learned how to parse last lab. 
+## Note about authentication
 3. We are using a very simple authentication method, by passing our API `token` in the request headers.
-When you use some real-world APIs, you will see some more sophisticated authentication techniques.
+When you use other real-world APIs in the future, you will see some more sophisticated authentication techniques.
