@@ -13,9 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Testing get average grade across your team.
- * The idea is that we don't want to wait for the specific API caller to be implemented. (Which one is it?)
+ * The idea is that we don't want to wait for the specific API call to be implemented.
+ * <p>
+ * This demonstrates using the Mockito library for "mocking" the GradeDataBase.
+ * <p>
+ * This should pass if the "to do" Task 3a is correctly implemented.
  */
-public class testingGetAverageGradeUseCaseMockito {
+public class GetAverageGradeUseCaseMockitoTest {
     @Mock
     private GradeDataBase gradeDB;
 
@@ -28,7 +32,7 @@ public class testingGetAverageGradeUseCaseMockito {
     }
 
     @Test
-    void testGetAverageGrade1() {
+    void testGetAverageGrade() {
         // Build an array of Grades.
         Grade[] expectedTeammember1Grades = new Grade[3];
         expectedTeammember1Grades[0] = Grade.builder()
@@ -75,6 +79,6 @@ public class testingGetAverageGradeUseCaseMockito {
         float result = getAverageGradeUseCase.getAverageGrade("CSC207");
 
         // Assert
-        assertEquals(result,83.0);
+        assertEquals(83.0, result);
     }
 }
