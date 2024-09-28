@@ -26,13 +26,13 @@ public class MongoGradeDataBase implements GradeDataBase {
     private static final String GRADE = "grade";
     private static final String MESSAGE = "message";
     private static final String NAME = "name";
+    private static final String TOKEN = "token";
     // load getPassword() from env variable.
     private static final int SUCCESS_CODE = 200;
 
-    public static String getAPIToken () {
-        return System.getenv("token");
+    public static String getAPIToken() {
+        return System.getenv(TOKEN);
     }
-
 
     @Override
     public Grade getGrade(String username, String course) {
@@ -40,12 +40,11 @@ public class MongoGradeDataBase implements GradeDataBase {
         // Build the request to get the grade.
         // Note: The API requires the username to be passed as a header.
         // Note: The API requires the course to be passed as a query parameter.
-        // TODO: what is the difference between a header and parameter?
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         final Request request = new Request.Builder()
                 .url(String.format("%s/grade?course=%s&username=%s", API_URL, course, username))
-                .addHeader("token", getAPIToken())
+                .addHeader(TOKEN, getAPIToken())
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
@@ -80,7 +79,7 @@ public class MongoGradeDataBase implements GradeDataBase {
                 .build();
         final Request request = new Request.Builder()
                 .url(String.format("%s/grade?username=%s", API_URL, username))
-                .addHeader("token", getAPIToken())
+                .addHeader(TOKEN, getAPIToken())
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
@@ -123,7 +122,7 @@ public class MongoGradeDataBase implements GradeDataBase {
         final Request request = new Request.Builder()
                 .url(String.format("%s/grade", API_URL))
                 .method("POST", body)
-                .addHeader("token", getAPIToken())
+                .addHeader(TOKEN, getAPIToken())
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
@@ -154,7 +153,7 @@ public class MongoGradeDataBase implements GradeDataBase {
         final Request request = new Request.Builder()
                 .url(String.format("%s/team", API_URL))
                 .method("POST", body)
-                .addHeader("token", getAPIToken())
+                .addHeader(TOKEN, getAPIToken())
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
@@ -195,7 +194,7 @@ public class MongoGradeDataBase implements GradeDataBase {
         final Request request = new Request.Builder()
                 .url(String.format("%s/team", API_URL))
                 .method("PUT", body)
-                .addHeader("token", getAPIToken())
+                .addHeader(TOKEN, getAPIToken())
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
@@ -225,7 +224,7 @@ public class MongoGradeDataBase implements GradeDataBase {
         final Request request = new Request.Builder()
                 .url(String.format("%s/leaveTeam", API_URL))
                 .method("PUT", body)
-                .addHeader("token", getAPIToken())
+                .addHeader(TOKEN, getAPIToken())
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
@@ -243,7 +242,7 @@ public class MongoGradeDataBase implements GradeDataBase {
     }
 
     @Override
-    // TODO: Implement this method
+    // TODO Task 3b: Implement this method
     //       Hint: Read apiDocuments/getMyTeam.md and refer to the above
     //             methods to help you write this code (copy-and-paste + edit as needed).
     public Team getMyTeam() {
@@ -252,16 +251,15 @@ public class MongoGradeDataBase implements GradeDataBase {
         final Request request = new Request.Builder()
                 .url(String.format("%s/team", API_URL))
                 .method("GET", null)
-                .addHeader("token", getAPIToken())
+                .addHeader(TOKEN, getAPIToken())
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
         final Response response;
         final JSONObject responseBody;
 
-        //TODO: Implement the logic to get the team information
-        //HINT: Look at the formTeam method to get an idea on how to parse the response
-
+        // TODO Task 3b: Implement the logic to get the team information
+        // HINT: Look at the formTeam method to get an idea on how to parse the response
 
         return null;
     }

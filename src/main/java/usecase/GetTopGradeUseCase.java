@@ -20,12 +20,12 @@ public final class GetTopGradeUseCase {
      * @return The top grade.
      */
     public float getTopGrade(String course) {
-        // Run the API to get all your teammembers' username
+        // Call the API to get the usernames of all your team members
         float max = 0;
         final Team team = gradeDataBase.getMyTeam();
-        // Run the API to get all the grades for the course for all your teammembers
+        // Call the API to get all the grades for the course for all your team members
         for (String username : team.getMembers()) {
-            // Run the API to get the grade for the course for the utorid
+            // Call the API to get the grade for the course for the username
             final Grade[] grades = gradeDataBase.getGrades(username);
             for (Grade grade : grades) {
 

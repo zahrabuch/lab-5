@@ -4,8 +4,8 @@ import api.GradeDataBase;
 import api.MongoGradeDataBase;
 import usecase.FormTeamUseCase;
 import usecase.GetAverageGradeUseCase;
-import usecase.GetTopGradeUseCase;
 import usecase.GetGradeUseCase;
+import usecase.GetTopGradeUseCase;
 import usecase.JoinTeamUseCase;
 import usecase.LeaveTeamUseCase;
 import usecase.LogGradeUseCase;
@@ -64,4 +64,6 @@ public class Config {
     public GetAverageGradeUseCase getAverageGradeUseCase() {
         return new GetAverageGradeUseCase(gradeDataBase);
     }
+
+    // TODO Task 4: add code for the new GetTopGradeUseCase following the same pattern as the other use cases above.
 }
