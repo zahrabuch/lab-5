@@ -71,6 +71,9 @@ public class GetAverageGradeUseCaseMockitoTest {
 
 
         // Define the behavior of the mock
+        when(gradeDB.getGrade("t1chenpa", "CSC207")).thenReturn(expectedTeammember1Grades[0]);
+        when(gradeDB.getGrade("t2chenpa", "CSC207")).thenReturn(expectedTeammember2Grades[0]);
+
         when(gradeDB.getGrades("t1chenpa")).thenReturn(expectedTeammember1Grades);
         when(gradeDB.getGrades("t2chenpa")).thenReturn(expectedTeammember2Grades);
         when(gradeDB.getMyTeam()).thenReturn(expectedTeam);
