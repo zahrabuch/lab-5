@@ -243,8 +243,9 @@ public class MongoGradeDataBase implements GradeDataBase {
 
     @Override
     // TODO Task 3b: Implement this method
-    //       Hint: Read apiDocuments/getMyTeam.md and refer to the above
+    //       Hint: Read the Grade API documentation for getMyTeam (link below) and refer to the above similar
     //             methods to help you write this code (copy-and-paste + edit as needed).
+    //             https://www.postman.com/cloudy-astronaut-813156/csc207-grade-apis-demo/folder/isr2ymn/get-my-team
     public Team getMyTeam() {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();

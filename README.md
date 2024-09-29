@@ -130,7 +130,7 @@ While this program has some useful core functionality which is provided by the G
 there are certain things which the Grade API can't currently do for us.
 
 1. Go to `My Team` menu, enter the course name as `207` and click on `Get average grade`. You will notice that the functionality 
-for `Get Average Grade` isn't implemented yet and this displays an error message. 
+for `Get Average Grade` isn't implemented yet — it will just display `Average Grade: 0.0`. 
 2. As a team, your goal is to work together to implement this feature and confirm that it works.
 3. Follow the flow from the `getAverage` button defined in the UI layer (`app/gui/Application.java`) to reach until the 
 `GetAverageGradeUseCase` in the usecase layer. You can do this by setting a breakpoint and running the program in debug mode.
