@@ -1,13 +1,28 @@
-# Lab 4: Grade API program
+# Lab 5: Grade API program
 
-**Please try to work through Tasks 0 and 1 ahead of your lab time on Monday.
-Your team and TA can help you during the lab if you had any trouble,
-so don't worry if you don't get through Task 1 before lab. There will also
-be some time to do this as your TA helps everyone get into teams.**
+[//]: # (**Please try to work through Tasks 0 and 1 ahead of your lab time on Monday.)
+
+[//]: # (Your team and TA can help you during the lab if you had any trouble,)
+
+[//]: # (so don't worry if you don't get through Task 1 before lab. There will also)
+
+[//]: # (be some time to do this as your TA helps everyone get into teams.**)
 
 ## Task 0: Fork and clone this repo
 
-1. As with the previous lab activities, start by making a fork of this repo and cloning it.
+Have a single member of your team fork this repo and invite the others to collaborate on their fork of the
+original repo on GitHub. You can do this in your repo on GitHub under `Settings -> Collaborators`.
+This will allow you to push branches to a common repo and then use pull requests to contribute
+your code and review. To prevent others from pushing directly to the main branch,
+we recommend you set branch protection rules on GitHub. Below are how the settings might look if you
+add branch protection rules:
+
+![image of branch protection rules for main
+with the requirement of two approvers to
+merge in pull requests.](images/branch_protection_rules.png "branch protection rules")
+
+After everyone is invited to your team's repository, everyone should clone 
+the repository.
 
 ## Task 1: Your API Token (token)
 
@@ -15,7 +30,7 @@ In order to use the Grade API, you will need to sign up a new username, and obta
 To sign up a username, we are going to make a simple request to the Grade API.
 
 1. Go to https://hoppscotch.io. This is a tool like Postman, which can be used to quickly interact with APIs.
-2. Beside the word GET, replace `https://echo.hoppscotch.io/` with `http://vm003.teach.cs.toronto.edu:20112/signUp`.
+2. Beside the word GET, replace `https://echo.hoppscotch.io/` with `https://grade-apis.panchen.ca/signUp`.
 
 Next, we need to specify the username which we want to use. To do this, we add a parameter.
 
@@ -30,7 +45,7 @@ Specifically, to learn more about the SignUp API request, refer to [this section
 
 ***
 
-Alternative to the above: Enter `http://vm003.teach.cs.toronto.edu:20112/signUp?username=USERNAME` in any web browser
+Alternative to the above: Enter `https://grade-apis.panchen.ca/signUp?username=USERNAME` in any web browser
 with `USERNAME` replaced with the username you want to use. Note, we are introducing you to tools like hoppscotch.io
 and postman above, since we'll later see API requests which can't be made through your web browser.
 
@@ -57,41 +72,39 @@ you are using, which likely isn't the same as the rest of your team when you col
 in this lab.
 
 8. Try running the main application (`src/main/java/app/gui/Application`). When you start the program,
-you will see that it says `your token is null` (since we didn't set it yet).
-Stop the program and go to `Run -> Edit Configurations...`.
+   you will see that it says `your token is null` (since we didn't set it yet).
+   Stop the program and go to `Run -> Edit Configurations...`.
 
 9. Open the Run Configuration for `Application` and find the `Environment Variables:`
-field.
-    - Note: If you don't see this Run Configuration listed:
+   field.
+   - Note: If you don't see this Run Configuration listed:
       - create a new Run Configuration of type `Application` (use the +
-      in the top left corner of the window).
+        in the top left corner of the window).
       - where it says "Main class", type `app.gui.Application`.
 
 10. In that field, paste the text you copied from `environment_variables` when you sign up an account. Your `token` should also be in `token.txt`.
-Example: `token=6SgDAt8XpnQYTDPt4vHcPCCKJ2ppLg1C`.
+    Example: `token=6SgDAt8XpnQYTDPt4vHcPCCKJ2ppLg1C`.
 11. Click `Apply` and then `OK`.
 12. Now, rerun the program and you should see your `token` displayed.
 13. Click on the `Log Grade` button and in the next screen, enter `207` as the course, enter a valid grade for this course, and click `Log`. You should see a popup
-telling you that your grade was successfully entered. You can then check your grade
-by using the `Get Grade` menu and specifying your username and `207` for the course.
+    telling you that your grade was successfully entered. You can then check your grade
+    by using the `Get Grade` menu and specifying your username and `207` for the course.
 
 You are now ready to use the program! The following task will be completed with your
 team during the lab. First, make sure everyone has successfully completed the steps above.
 
 ## Task 2: Forming a team
 
-As a team-building exercise, you will now work together to form a team using
-this application. Team members in this program are able to view the grades of other
-team members.
+As a team-building exercise, you will now work together using this application. Team members in this program are able to view the grades of other team members.
 
 1. Choose a team name. Make it something unique to your team, as other teams will also
-be picking team names and duplicate names aren't allowed.
+   be picking team names and duplicate names aren't allowed.
 
 2. Have one member of your team form a team with the name your team chose by clicking the `Form a team` button,
-entering the team name in the text field, and pressing `Submit`.
+   entering the team name in the text field, and pressing `Submit`.
 
 3. Each other member of the team should then join the team using the `Join a team` menu. Make sure you see the popup
-confirming that you successfully joined the team.
+   confirming that you successfully joined the team.
 
 4. Try looking up the grade another team member entered for `207` using the `Get a Grade` menu.
 
@@ -106,23 +119,13 @@ enter requests as different users!
 
 ***
 
-Note: Your team can choose how you want to work on the following two tasks, but below is our suggestion.
+[//]: # (We recommend splitting your team into two halves with one half working on task 3 and the other on task 4.)
 
-Suggested logistics: One of you should invite the others to collaborate on their fork of the
-original repo on GitHub. You can do this in your repo on GitHub under `Settings -> Collaborators`.
-This will allow you to push branches to a common repo and then use pull requests to contribute
-your code and review. To prevent others from pushing directly to the main branch,
-we recommend you set branch protection rules on GitHub. Below are how the settings might look if you
-add branch protection rules:
+[//]: # (You can work on separate branches and merge the code together when you are done.)
 
-![image of branch protection rules for main
-with the requirement of two approvers to
-merge in pull requests.](images/branch_protection_rules.png "branch protection rules")
+[//]: # (Note that successful completion of task 3 is a pre-requisite for task 4 as the `getMyTeam&#40;&#41;` method is used in both the features,)
 
-We recommend splitting your team into two halves with one half working on task 3 and the other on task 4.
-You can work on separate branches and merge the code together when you are done.
-Note that successful completion of task 3 is a pre-requisite for task 4 as the `getMyTeam()` method is used in both the features,
-but you can still write the code for task 4 so that it is ready to run once task 3 is complete.
+[//]: # (but you can still write the code for task 4 so that it is ready to run once task 3 is complete.)
 
 ## Task 3: Coding the Get Average Grade feature
 
