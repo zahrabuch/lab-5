@@ -8,6 +8,76 @@
 
 [//]: # (be some time to do this as your TA helps everyone get into teams.**)
 
+## Background: What Is a Web API and How Do I Use One?
+
+In short, a web api is a method call over the internet which returns a JSON 
+object as a response.
+For example, there is a web api for cat facts called "meowfacts" which is 
+accessible at https://meowfacts.herokuapp.com.
+If you navigate to this URL in your browser, you will be returned one cat fact.
+Below is the output I received.
+```json
+{
+  "data": [
+    "In ancient Egypt, when a family cat died, all family members would shave their eyebrows as a sign of mourning."
+  ]
+}
+```
+
+Just like in a java method call, web api calls can have input parameters.
+For instance, in the meowfacts api, you are able to receive multiple cat 
+facts at once by providing a count parameter.
+To do so, you append "?count=x" to the meowfacts API url where "x" is the 
+number of cat facts you'd like.
+For example, by navigating to https://meowfacts.herokuapp.com/?count=5 in 
+your browser, you will be returned five facts.
+Below is the output I received.
+```json
+{
+  "data": [
+    "Cats can not taste sweetness.",
+    "A group of cats is called a clowder.",
+    "Cats can get tapeworms from eating mice. If your cat catches a mouse it is best to take the prize away from it.",
+    "You check your cats pulse on the inside of the back thigh, where the leg joins to the body. Normal for cats: 110-170 beats per minute.",
+    "The worlds richest cat is worth $13 million after his human passed away and left her fortune to him."
+  ]
+}
+```
+
+While web apis can be accessed by navigating to their urls in your browser, 
+they can (and usually are) accessed programmatically.
+In this lab you will use the OkHttp library to access an apis developed for 
+this course (see 
+https://square.github.io/okhttp/ for documentation).
+A minimal code example for accessing the meowfacts api discussed above using 
+the OkHttp library is provided below.
+```java
+import java.io.IOException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+public class GetExample {
+  final OkHttpClient client = new OkHttpClient();
+
+  String run(String url) throws IOException {
+    Request request = new Request.Builder()
+        .url(url)
+        .build();
+
+    try (Response response = client.newCall(request).execute()) {
+      return response.body().string();
+    }
+  }
+
+  public static void main(String[] args) throws IOException {
+    GetExample example = new GetExample();
+    String response = example.run("https://meowfacts.herokuapp.com");
+    System.out.println(response);
+  }
+}
+```
+
 ## Task 0: Fork and clone this repo
 
 Have a single member of your team fork this repo and invite the others to collaborate on their fork of the
