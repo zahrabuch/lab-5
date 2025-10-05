@@ -19,7 +19,7 @@ import okhttp3.Response;
  */
 public class MongoGradeDataBase implements GradeDataBase {
     // Defining some constants.
-    private static final String API_URL = "http://vm003.teach.cs.toronto.edu:20112";
+    private static final String API_URL = "https://grade-apis.panchen.ca";
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
     private static final String STATUS_CODE = "status_code";
@@ -27,9 +27,11 @@ public class MongoGradeDataBase implements GradeDataBase {
     private static final String MESSAGE = "message";
     private static final String NAME = "name";
     private static final String TOKEN = "token";
-    // load getPassword() from env variable.
+    private static final String COURSE = "course";
+    private static final String USERNAME = "username";
     private static final int SUCCESS_CODE = 200;
 
+    // load token from env variable.
     public static String getAPIToken() {
         return System.getenv(TOKEN);
     }
@@ -38,8 +40,8 @@ public class MongoGradeDataBase implements GradeDataBase {
     public Grade getGrade(String username, String course) {
 
         // Build the request to get the grade.
-        // Note: The API requires the username to be passed as a header.
-        // Note: The API requires the course to be passed as a query parameter.
+        // Note: The API requires the token to be passed as a header.
+        // Note: The API requires the course and username to be passed as query parameters.
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         final Request request = new Request.Builder()
@@ -56,13 +58,14 @@ public class MongoGradeDataBase implements GradeDataBase {
             if (responseBody.getInt(STATUS_CODE) == SUCCESS_CODE) {
                 final JSONObject grade = responseBody.getJSONObject(GRADE);
                 return Grade.builder()
-                        .username(grade.getString("username"))
-                        .course(grade.getString("course"))
+                        .username(grade.getString(USERNAME))
+                        .course(grade.getString(COURSE))
                         .grade(grade.getInt(GRADE))
                         .build();
             }
             else {
-                throw new RuntimeException(responseBody.getString(MESSAGE));
+                throw new RuntimeException("Grade could not be found for course: " + course
+                                           + " and username: " + username);
             }
         }
         catch (IOException | JSONException event) {
@@ -74,7 +77,8 @@ public class MongoGradeDataBase implements GradeDataBase {
     public Grade[] getGrades(String username) {
 
         // Build the request to get all grades for a user.
-        // Note: The API requires the username to be passed as a header.
+        // Note: The API requires the token to be passed as a header.
+        // Note: The API requires the username to be passed as a query parameter.
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         final Request request = new Request.Builder()
@@ -83,7 +87,8 @@ public class MongoGradeDataBase implements GradeDataBase {
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
-        // Hint: look at the API documentation to understand what the response looks like.
+        // Note: you can look at the API documentation to understand what the response looks like
+        // to better understand how this parses the response.
         try {
             final Response response = client.newCall(request).execute();
             final JSONObject responseBody = new JSONObject(response.body().string());
@@ -94,8 +99,8 @@ public class MongoGradeDataBase implements GradeDataBase {
                 for (int i = 0; i < grades.length(); i++) {
                     final JSONObject grade = grades.getJSONObject(i);
                     result[i] = Grade.builder()
-                            .username(grade.getString("username"))
-                            .course(grade.getString("course"))
+                            .username(grade.getString(USERNAME))
+                            .course(grade.getString(COURSE))
                             .grade(grade.getInt(GRADE))
                             .build();
                 }
@@ -116,7 +121,7 @@ public class MongoGradeDataBase implements GradeDataBase {
                 .build();
         final MediaType mediaType = MediaType.parse(APPLICATION_JSON);
         final JSONObject requestBody = new JSONObject();
-        requestBody.put("course", course);
+        requestBody.put(COURSE, course);
         requestBody.put(GRADE, grade);
         final RequestBody body = RequestBody.create(mediaType, requestBody.toString());
         final Request request = new Request.Builder()
@@ -260,8 +265,9 @@ public class MongoGradeDataBase implements GradeDataBase {
         final JSONObject responseBody;
 
         // TODO Task 3b: Implement the logic to get the team information
-        // HINT: Look at the formTeam method to get an idea on how to parse the response
-
+        // HINT 1: Look at the formTeam method to get an idea on how to parse the response
+        // HINT 2: You may find it useful to just initially print the contents of the JSON
+        //         then work on the details of how to parse it.
         return null;
     }
 }
