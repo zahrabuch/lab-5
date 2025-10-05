@@ -9,7 +9,7 @@ to begin working on your project!
 > but if your team works together then everyone should have a good understanding
 > of how to make web API calls by the end of this lab.
 
-## Requirement:
+## Requirements:
 
 To earn credit for this lab, your team must demonstrate fully working implementations of:
 * getting the average grade (Task 3)
