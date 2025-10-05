@@ -169,7 +169,7 @@ After you have obtained the response, you need to save your token somewhere, as 
 throughout the rest of the lab.
 
 * Create a new file called `token.txt` in the root directory of your project and copy / paste the value you found
-   for the `token` field in that file. This file is indicated in the `.gitignore` for your project, so
+   for the `token` field in that file, as well as your username. This file is indicated in the `.gitignore` for your project, so
    its name will appear highlighted in IntelliJ to indicate that git will ignore the file (it won't be version
    controlled). **This can be useful to ensure that you don't accidentally share private information
    (like personal API tokens) or configurations specific to your local environment when working on a

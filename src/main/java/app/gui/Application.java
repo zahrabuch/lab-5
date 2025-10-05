@@ -203,7 +203,7 @@ public class Application {
             }
         });
 
-        getGradeCard.add(new JLabel("Username (leave it blank if you are checking you own grade):"));
+        getGradeCard.add(new JLabel("Username:"));
         getGradeCard.add(usernameField);
         getGradeCard.add(new JLabel("Course:"));
         getGradeCard.add(courseField);
