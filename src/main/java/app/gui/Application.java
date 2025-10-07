@@ -45,6 +45,7 @@ public class Application {
         final Config config = new Config();
 
         final GetGradeUseCase getGradeUseCase = config.getGradeUseCase();
+        final GetTopGradeUseCase getTopGradeUseCase = config.getTopGradeUseCase();
         final LogGradeUseCase logGradeUseCase = config.logGradeUseCase();
         final FormTeamUseCase formTeamUseCase = config.formTeamUseCase();
         final JoinTeamUseCase joinTeamUseCase = config.joinTeamUseCase();
@@ -324,7 +325,8 @@ public class Application {
         final JTextField courseField = new JTextField(20);
         // make a separate line.
         final JButton getAverageButton = new JButton("Get Average Grade");
-        final JButton getTopButton = new JButton("Get Top Grade");
+        // TODO Task 4: Add another button for "Get Top Grade" (check the getAverageButton for example)
+        final JButton getTopGradeButton = new JButton("Get Top Grade");
 
         final JButton leaveTeamButton = new JButton("Leave Team");
         final JLabel resultLabel = new JLabel();
@@ -350,22 +352,22 @@ public class Application {
             }
         });
 
-        getTopButton.addActionListener(new ActionListener() {
+        // TODO Task 4: Add action listener for getTopGrade button, follow example of getAverageButton
+        getTopGradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 final String course = courseField.getText();
 
                 try {
-                    final float topGrade = getTopGradeUseCase.getTopGrade(course);
-                    JOptionPane.showMessageDialog(jFrame, "Top Grade: " + topGrade);
+                    final float top = getTopGradeUseCase.getTopGrade(course);
+                    JOptionPane.showMessageDialog(jFrame, "Top Grade: " + top);
                     courseField.setText("");
-                } catch (JSONException ex) {
+                }
+                catch (JSONException ex) {
                     JOptionPane.showMessageDialog(jFrame, ex.getMessage());
-
                 }
             }
         });
-
 
         leaveTeamButton.addActionListener(new ActionListener() {
             /**
@@ -387,6 +389,7 @@ public class Application {
 
         theCard.add(new JLabel("The course you want to calculate the team average for:"));
         theCard.add(courseField);
+        theCard.add(getTopGradeButton);
         theCard.add(getAverageButton);
         theCard.add(getTopButton);
         theCard.add(leaveTeamButton);
