@@ -51,6 +51,7 @@ public class Application {
         final JoinTeamUseCase joinTeamUseCase = config.joinTeamUseCase();
         final LeaveTeamUseCase leaveTeamUseCase = config.leaveTeamUseCase();
         final GetAverageGradeUseCase getAverageGradeUseCase = config.getAverageGradeUseCase();
+        final GetTopGradeUseCase getTopGradeUseCase = config.getTopGradeUseCase();
 
         // this is the code that runs to set up our GUI
         SwingUtilities.invokeLater(() -> {
@@ -317,8 +318,6 @@ public class Application {
         return theCard;
     }
 
-    // TODO Task 4: modify this method so that it takes in a getTopGradeUseCase
-    //              Note: this will require you to update the code that calls this method.
     private static JPanel createManageTeamCard(JFrame jFrame, LeaveTeamUseCase leaveTeamUseCase,
                                                GetAverageGradeUseCase getAverageGradeUseCase, GetTopGradeUseCase getTopGradeUseCase) {
         final JPanel theCard = new JPanel();
@@ -392,6 +391,7 @@ public class Application {
         theCard.add(courseField);
         theCard.add(getTopGradeButton);
         theCard.add(getAverageButton);
+        theCard.add(getTopButton);
         theCard.add(leaveTeamButton);
         theCard.add(resultLabel);
         return theCard;
