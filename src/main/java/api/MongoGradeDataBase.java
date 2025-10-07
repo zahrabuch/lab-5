@@ -292,8 +292,5 @@ public class MongoGradeDataBase implements GradeDataBase {
             throw new RuntimeException(event);
         }
 
-        // HINT 2: You may find it useful to just initially print the contents of the JSON
-        //         then work on the details of how to parse it.
-        //return null;
     }
 }
